@@ -1,0 +1,6 @@
+selenium
+pytest
+python-dotenv
+webdriver-manager
+pytest-rerunfailures
+allure-pytest

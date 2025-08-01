@@ -1,0 +1,20 @@
+# Test reports and logs
+reports/allure-results/
+reports/allure-report/
+*.log
+*.html
+
+# Secrets
+.env
+
+# Mac system files
+.DS_Store
+
+# VS Code / PyCharm
+.vscode/
+.idea/
+
+# Pycache and compiled files
+__pycache__/
+*.py[cod]
+
