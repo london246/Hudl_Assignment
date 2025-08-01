@@ -65,7 +65,7 @@ allure open reports/allure-report
 
 Clean old test results before running again
 ```bash
-rm -rf reports/allure-results
+rm -rf reports/allure-results reports/allure-report
 ```
 #### Note: Once Allure Report is Open click on `features by stories`
 

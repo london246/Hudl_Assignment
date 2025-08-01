@@ -93,6 +93,7 @@ def test_wrong_password_unregistered_email(driver, go_to_login):
     wait_for_element(driver, PasswordPage.PASSWORD_INPUT)
     password.enter_password(WRONG_PASSWORD)
     password.click_continue()
+    wait_for_element(driver, PasswordPage.ERROR_PASSWORD_INCORRECT)
     assert MSG_LOGIN_FAILED_GENERIC in password.get_error(PasswordPage.ERROR_PASSWORD_INCORRECT)
 
 @allure.feature("Login")
@@ -128,6 +129,7 @@ def test_edit_email_to_registered_one_and_provide_wrong_password(driver, go_to_l
     wait_for_element(driver, LoginPage.EMAIL_INPUT)
     login.enter_email(EMAIL)
     login.click_continue()
+    wait_for_element(driver, PasswordPage.PASSWORD_INPUT)
     password.enter_password(WRONG_PASSWORD)
     password.click_continue()
     assert MSG_LOGIN_FAILED_WITH_REGISTERED_EMAIL in password.get_error(PasswordPage.ERROR_PASSWORD_INCORRECT)

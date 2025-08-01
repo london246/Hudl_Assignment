@@ -3,8 +3,9 @@ from selenium.webdriver.common.by import By
 class PasswordPage:
     PASSWORD_INPUT = (By.ID, "password")
     CONTINUE_BTN = (By.XPATH, "//button[text()='Continue']")
-    ERROR_PASSWORD_REQUIRED = "error-cs-password-required"
-    ERROR_PASSWORD_INCORRECT = "error-element-password"
+    ERROR_PASSWORD_REQUIRED = (By.ID, "error-cs-password-required")
+    ERROR_PASSWORD_INCORRECT = (By.ID, "error-element-password")
+    ERROR_PASSWORD_INCORRECT_WAIT = (By.ID, "error-element-password")
     EDIT_EMAIL_LINK = (By.LINK_TEXT, "Edit")
     TOGGLE_PASSWORD_BUTTON = (By.CSS_SELECTOR, "button[role='switch'][data-action='toggle']")
 
@@ -19,7 +20,7 @@ class PasswordPage:
         self.driver.find_element(*self.CONTINUE_BTN).click()
 
     def get_error(self, error_id):
-        return self.driver.find_element(By.ID, error_id).text
+        return self.driver.find_element(*error_id).text
 
     def click_edit_email(self):
         self.driver.find_element(*self.EDIT_EMAIL_LINK).click()
