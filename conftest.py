@@ -7,8 +7,13 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from dotenv import load_dotenv
+import pytest
+import allure
+import os
 
 load_dotenv()
+os.makedirs("screenshots", exist_ok=True)
+
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome", help="Browser: chrome or firefox")
@@ -34,3 +39,18 @@ def driver(request):
 
     yield driver
     driver.quit()
+
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    """Hook to capture screenshot on failure and attach to Allure report."""
+    outcome = yield
+    report = outcome.get_result()
+
+    if report.when == "call" and report.failed:
+        driver = item.funcargs.get("driver")
+        if driver:
+            screenshot_path = f"screenshots/{item.name}.png"
+            driver.save_screenshot(screenshot_path)
+            with open(screenshot_path, "rb") as f:
+                allure.attach(f.read(), name=item.name, attachment_type=allure.attachment_type.PNG)

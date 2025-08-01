@@ -12,7 +12,7 @@ Automated UI test suite for validating login functionality built using Python, S
 Or manually:
 
 ```bash
-  pip install selenium pytest pytest-rerunfailures python-dotenv webdriver-manager allure-pytest
+  pip install selenium pytest pytest-rerunfailures python-dotenv webdriver-manager allure-pytest pytest-xdist
 ```
 
 ### 2. Setup `.env`
@@ -67,6 +67,21 @@ Clean old test results before running again
 ```bash
 rm -rf reports/allure-results reports/allure-report
 ```
+
+### Run in parallel with Allure report:
+
+```bash
+# Run tests (Allure results auto-saved based on pytest.ini)
+pytest -n 4 --alluredir=reports/allure-results
+allure generate reports/allure-results -o reports/allure-report --clean
+allure open reports/allure-report
+```
+Clean old test results before running again
+```bash
+rm -rf reports/allure-results reports/allure-report
+```
+
+
 #### Note: Once Allure Report is Open click on `features by stories`
 
 ## Compatible with Chrome and Firefox

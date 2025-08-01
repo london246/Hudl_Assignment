@@ -18,3 +18,5 @@ reports/allure-report/
 __pycache__/
 *.py[cod]
 
+# Ignore screenshots
+screenshots/
