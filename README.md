@@ -47,11 +47,11 @@ Make sure Allure CLI is installed:
 
 ##  Run Specific Test file
 ```bash
-`pytest tests/test_login.py` 
+pytest tests/test_login.py
 ```
 ## Run specific test case 
 ```bash
-`pytest -k "test_valid_login"`
+pytest -k "test_valid_login"
 ```
 
 ### Run with Allure report:
